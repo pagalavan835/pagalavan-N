@@ -1,0 +1,5 @@
+a=int(input("Enter the number of tyres:"))
+if(a%4==2):
+   print("we can make the bike")
+else:
+      print("WE cannot make the bike with given tyres")
