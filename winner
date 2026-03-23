@@ -1,0 +1,16 @@
+a=int(input("Suresh has coins:"))
+b=int(input("sundar has coins:"))
+c=int(input("Raja has coins:"))
+d=int(input("suresh has coins:"))
+if(a>=b):
+   b=c+b;
+else:
+   a=a+c;
+if(a>=b):
+   b=d+b;
+else:
+   a=a+d;
+if(a>b):
+   print("N")
+else:
+   print("S")
