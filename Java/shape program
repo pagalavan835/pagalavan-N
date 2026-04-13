@@ -1,0 +1,24 @@
+import java.util.*;
+class Shape{
+        void volume(int l,int b,int h) {
+                System.out.println("volume of cuboid:"+(l*b*h));
+        }
+        void volume(int a) {
+                System.out.println("volume of cuboid:"+(a*a*a));
+        }
+        void volume(double r,double h) {
+                System.out.println("volume of cuboid:"+(3.14*r*r*h));
+        }
+}
+
+public class ShapePgm {
+
+        public static void main(String[] args) {
+                Shape s1=new Shape();
+                s1.volume(4,5,6);
+                s1.volume(18);
+                s1.volume(3.0,6.0);
+
+        }
+
+}
