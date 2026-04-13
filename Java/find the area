@@ -1,0 +1,45 @@
+interface  Shape{
+        final double pi=3.14;
+        void input();
+     void calculateArea();
+}
+class Rect implements Shape{
+    double l,b;
+     public void input(){
+            l=10.0;
+            b=5.0;
+    }
+     public void calculateArea() {
+            System.out.println("area of rectangle is:"+(l*b));
+
+    }
+}
+
+class Circle implements Shape{
+    double r;
+    public void input(){
+            r=10;
+    }
+    public void calculateArea() {
+            System.out.println("area of circle is:"+(pi*r*r));
+    }
+}
+
+
+
+public class MainShape {
+
+        public static void main(String[] args) {
+
+                Rect r=new Rect();
+        System.out.println("Area of rectangle");
+        r.input();
+        r.calculateArea();
+        Circle t=new Circle();
+        System.out.println("Area of triangle");
+        t.input();
+        t.calculateArea();
+
+        }
+
+}
