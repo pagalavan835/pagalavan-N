@@ -1,0 +1,9 @@
+arr = [1, 2, 3, 3, 2, 2]
+val = 3
+k = 0
+for i in range(len(arr)):
+    if arr[i] != val:
+        arr[k] = arr[i]
+        k += 1
+print(f"Number of elements (k): {k}")
+print(f"Modified array (first k elements): {arr[:k]}")
