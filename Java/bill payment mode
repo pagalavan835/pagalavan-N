@@ -1,0 +1,133 @@
+import java.util.*;
+class Payment{
+        String name;
+        double amt;
+        String date;
+         static int id=0;
+        Payment(String pname,double amount,String date){
+                name=pname;
+                amt=amount;
+                this.date=date;
+                id++;
+        }
+        void display() {
+                System.out.println("BILL BILL");
+                System.out.println("BILL ID:"+id);
+                System.out.println("NAME:"+name);
+                System.out.println("AMOUNT:"+amt);
+                System.out.println("DATE:"+date);
+        }
+}
+
+class Cash extends Payment{
+        Cash(String pname,double amount,String date){
+
+                super(pname,amount,date);
+        }
+
+        void computeBill() {
+                amt+=(amt*0.12);
+                super.display();
+        }
+
+
+}
+class Card extends Payment{
+        long card;
+        int p;
+        Card(String pname,double amount,String date,long cardno,int pin){
+                super(pname,amount,date);
+
+                card=cardno;
+                p=pin;
+
+        }
+        void displayCard() {
+                System.out.println("CARD DETAILS");
+                System.out.println("CARD NUMBER:"+card);
+                super.display();
+        }
+}
+class Debit extends Card{
+        Debit(String pname,double amount,String date,long cardno,int pin){
+                super(pname,amount,date,cardno,pin);
+        }
+        void computeBill() {
+                amt+=(amt*0.10);
+                super.displayCard();
+        }
+
+
+}
+class Credit extends Card{
+        Credit(String pname,double amount,String date,long cardno,int pin){
+                super(pname,amount,date,cardno,pin);
+        }
+        void computeBill() {
+                amt+=(amt*0.05);
+                super.displayCard();
+        }
+
+
+}
+
+public class Bill{
+
+
+        public static void main(String[] args)
+        {
+                Scanner in=new Scanner(System.in);
+                // TODO Auto-generated method stub
+            String pname;
+                double amount;
+                String date;
+                long cardno;
+                int pin;
+                int ch1;
+                int ch2,choice;
+                System.out.print("enter number of user:");
+                choice=in.nextInt();
+                for(int i=0;i<choice;i++) {
+                System.out.print("enter name:");
+                pname=in.next();
+                System.out.print("enter amount:");
+                amount=in.nextDouble();
+                System.out.print("date:");
+                date=in.next();
+                System.out.println("CHOICE\n1.card\n2.cash");
+                System.out.print("enter choice:\n");
+                ch1=in.nextInt();
+                if(ch1==2)
+                {
+                        Cash c=new Cash(pname,amount,date);
+                        c.computeBill();
+
+                }
+           else if(ch1==1)
+           {
+                   System.out.println("CHOICE\n1.dedit card\n2.credit card");
+                   System.out.print("enter choice:");
+                   ch2=in.nextInt();
+                   if(ch2==1)
+                   {
+                           System.out.print("enter cardno:");
+                           cardno=in.nextLong();
+                           System.out.print("enter pin:");
+                           pin=in.nextInt();
+                           Debit d=new Debit(pname,amount,date,cardno,pin);
+                           d.computeBill();
+
+                   }
+                   else if(ch2==2)
+                   {
+                           System.out.print("enter cardno:");
+                           cardno=in.nextLong();
+                           System.out.print("enter pin:");
+                           pin=in.nextInt();
+                           Credit d=new Credit(pname,amount,date,cardno,pin);
+                           d.computeBill();
+                   }
+           }
+           }
+        }
+}
