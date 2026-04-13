@@ -1,0 +1,43 @@
+abstract class Shape{
+       abstract public void calculateArea();
+        public void display(double area) {
+                System.out.println("Area:"+area);
+        }
+}
+class Rect extends Shape{
+        double l,b;
+        Rect(){
+                l=10.0;
+                b=5.0;
+        }
+        public void calculateArea() {
+                double a=l*b;
+                super.display(a);
+        }
+}
+
+class Tri extends Shape{
+        double l,b;
+        Tri(){
+                l=10.0;
+                b=5.0;
+        }
+        public void calculateArea() {
+                double a=l*b*0.5;
+                super.display(a);
+        }
+}
+public class ShapePgm {
+
+        public static void main(String[] args) {
+                // TODO Auto-generated method stub
+                Rect r=new Rect();
+                System.out.println("Area of rectangle");
+                r.calculateArea();
+                Tri t=new Tri();
+                System.out.println("Area of triangle");
+                t.calculateArea();
+
+        }
+
+}
