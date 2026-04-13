@@ -1,0 +1,4 @@
+a=int(input("Enter length:"))
+b=int(input("Enter breadth:"))
+c=2*a+2*b
+print("perimeter:",c)
