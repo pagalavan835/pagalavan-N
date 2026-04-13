@@ -1,0 +1,103 @@
+class Bank {
+    double getInterest() {
+        return 0.0;
+    }
+}
+
+class SBI extends Bank{
+    double getInterest() {
+        return 7.5;
+    }
+}
+
+class UBI extends Bank {
+    double getInterest() {
+        return 8.1;
+    }
+}
+
+class Canara extends Bank{
+    double getInterest() {
+        return 7.99;
+    }
+}
+
+class Customer {
+    private String name;
+    private String bank;
+    private double loanamount;
+    private double interest;
+
+    void setName(String name) {
+        this.name = name;
+    }
+
+    void setBank(String bank) {
+        this.bank = bank;
+    }
+
+    void setInterest(double i) {
+        interest=i;
+    }
+
+    void setLoanAmount(double l) {
+        this.loanamount = l;
+    }
+
+
+
+    String getName() {
+        return name;
+    }
+
+    String getBank() {
+        return bank;
+    }
+
+    double getInterest() {
+        return interest;
+    }
+
+    double getLoanAmount() {
+        return loanamount;
+    }
+
+    void display(double intr) {
+        System.out.println("\nCustomer: " + getName());
+        System.out.println("Bank: " + getBank());
+        System.out.println("Loan Amount: " + getLoanAmount());
+        System.out.println("Rate of interest:"+intr);
+        System.out.println("Interest to Pay: " + getInterest());
+    }
+
+}
+public class BankPgm {
+
+        public static void main(String[] args) {
+                // TODO Auto-generated method stub
+        Customer c=new Customer();
+        Bank b;
+        double interest;
+        c.setName("pagalavan");
+        c.setLoanAmount(50000);
+        b=new SBI();
+        c.setBank("TMB");
+        interest =c.getLoanAmount()* b.getInterest()/100;
+        c.setInterest(interest);
+        c.display(b.getInterest());
+
+        b=new UBI();
+        c.setBank("UBI");
+        interest =c.getLoanAmount()* b.getInterest()/100;
+        c.setInterest(interest);
+        c.display(b.getInterest());
+
+        b=new Canara();
+        c.setBank("Canara");
+        interest =c.getLoanAmount()* b.getInterest()/100;
+        c.setInterest(interest);
+        c.display(b.getInterest());
+
+        }
+
+}
