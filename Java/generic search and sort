@@ -1,0 +1,84 @@
+package generic;
+public class GenericSearch {
+    public static <T> int search(T[] array, T key) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i].equals(key)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    public static void main(String[] args) {
+        Integer[] intArray = {10, 20, 30, 40, 50};
+        int intIndex = search(intArray, 40);
+        System.out.println("40 found at index: " + intIndex);
+
+        String[] strArray = {"MATHS", "DSA", "COA", "JAVA"};
+        int strIndex = search(strArray, "DSA");
+        System.out.println("\"DSA\" found at index: " + strIndex);
+
+        int notFound = search(strArray, "DIGITAL");
+        System.out.println("\"DIGITAL\" found at index: " + notFound);
+    }
+}
+
+
+
+package generic;
+public class GenericSort {
+    public static <T extends Comparable<T>> void sortArray(T[] array) {
+        int n = array.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (array[j].compareTo(array[j + 1]) > 0) {
+                    T temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
+    }
+    public static <T> void displayArray(T[] array) {
+        for (T element : array) {
+            System.out.print(element + " ");
+        }
+        System.out.println();
+    }
+    public static void main(String[] args) {
+        Integer[] intArray = {6, 3, 9, 1, 4};
+        String[] strArray = {"Immanuel", "Gobson", "David"};
+
+        System.out.println("Before sorting integers:");
+        displayArray(intArray);
+        sortArray(intArray);
+        System.out.println("After sorting integers:");
+        displayArray(intArray);
+
+        System.out.println("\nBefore sorting strings:");
+        displayArray(strArray);
+        sortArray(strArray);
+        System.out.println("After sorting strings:");
+        displayArray(strArray);
+    }
+}
+
+
+package generic;
+public class TwoTypeGeneric<T, U> {
+    T first;
+    U second;
+    TwoTypeGeneric(T first, U second) {
+        this.first = first;
+        this.second = second;
+    }
+    void display() {
+        System.out.println("First value: " + first);
+        System.out.println("Second value: " + second);
+    }
+    public static void main(String[] args) {
+        TwoTypeGeneric<Integer, String> obj1 = new TwoTypeGeneric<>(96, "David");
+        obj1.display();
+        TwoTypeGeneric<Double, Character> obj2 = new TwoTypeGeneric<>(69.9, 'M');
+        obj2.display();
+    }
+}
