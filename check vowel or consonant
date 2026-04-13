@@ -1,0 +1,7 @@
+string = input("Enter the string:").lower()
+vowels = ['a', 'e', 'i', 'o', 'u']
+
+if any(vowel in string for vowel in vowels):
+    print("vowel")
+else:
+    print("consonant")
