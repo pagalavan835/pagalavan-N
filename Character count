@@ -1,0 +1,8 @@
+str=input("enter a string:")
+character_count={}
+for char in str:
+   if char in character_count:
+      character_count[char]+=1
+   else:
+      character_count[char]=1
+      print(character_count)
