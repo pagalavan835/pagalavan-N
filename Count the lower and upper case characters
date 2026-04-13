@@ -1,0 +1,10 @@
+str=input("enter a string:")
+lowercase_count=0
+uppercase_count=0
+for char in str:
+   if char.islower():
+      lowercase_count+=1
+   elif char.isupper():
+      uppercase_count=1
+print("lowercase leters:",lowercase_count)
+print("uppercase leters:",uppercase_count)
