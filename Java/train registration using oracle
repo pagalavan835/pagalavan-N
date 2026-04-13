@@ -1,0 +1,144 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.sql.*;
+
+public class TrainRegistrationOracle extends JFrame implements ActionListener{
+        JTextField nameField, trainnumField, mobileField,sourceField,destinationField,numField,emailField;
+    JButton submitBtn, clearBtn;
+
+    Connection con;
+    PreparedStatement pst;
+
+    TrainRegistrationOracle() {
+        setTitle("Train Registration Form (Oracle DB)");
+        setSize(450, 400);
+        setLayout(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JLabel title = new JLabel("Passenger Registration Form");
+        title.setFont(new Font("Arial", Font.BOLD, 18));
+        title.setBounds(90, 5, 300, 30);
+        add(title);
+
+        JLabel nameLbl = new JLabel("Passenger Name:");
+        nameLbl.setBounds(50, 40, 120, 25);
+        add(nameLbl);
+        nameField = new JTextField();
+        nameField.setBounds(160, 40, 180, 25);
+        add(nameField);
+
+        JLabel trainnumLbl = new JLabel("Train Number:");
+        trainnumLbl.setBounds(50, 80, 120, 25);
+        add(trainnumLbl);
+        trainnumField = new JTextField();
+        trainnumField.setBounds(160, 80, 180, 25);
+        add(trainnumField);
+
+        JLabel mobileLbl = new JLabel("Mobile Number:");
+        mobileLbl.setBounds(50, 120, 120, 25);
+        add(mobileLbl);
+        mobileField = new JTextField();
+        mobileField.setBounds(160, 120, 180, 25);
+        add(mobileField);
+
+        JLabel emailLbl = new JLabel("Email ID:");
+        emailLbl.setBounds(50, 160, 120, 25);
+        add(emailLbl);
+        emailField = new JTextField();
+        emailField.setBounds(160, 160, 180, 25);
+        add(emailField);
+
+        JLabel sourceLbl = new JLabel("From:");
+        sourceLbl.setBounds(50, 200, 70, 25);
+        add(sourceLbl);
+        sourceField = new JTextField();
+        sourceField.setBounds(90, 200, 100, 25);
+        add(sourceField);
+
+        JLabel destinationLbl = new JLabel("To:");
+        destinationLbl.setBounds(200, 200, 70, 25);
+        add(destinationLbl);
+        destinationField = new JTextField();
+        destinationField.setBounds(220, 200, 120, 25);
+        add(destinationField);
+
+        JLabel numLbl = new JLabel("No. oF Passenger:");
+        numLbl.setBounds(50, 240, 120, 25);
+        add(numLbl);
+        numField = new JTextField();
+        numField.setBounds(160, 240, 180, 25);
+        add(numField);
+
+        submitBtn = new JButton("Submit");
+        submitBtn.setBounds(90, 290, 100, 30);
+        add(submitBtn);
+
+        clearBtn = new JButton("Clear");
+        clearBtn.setBounds(220, 290, 100, 30);
+        add(clearBtn);
+
+        submitBtn.addActionListener(this);
+        clearBtn.addActionListener(this);
+
+        connectToOracle();
+
+        setVisible(true);
+    }
+
+    // Establish Oracle Database Connection
+    void connectToOracle() {
+        try {
+             // Load Oracle JDBC driver
+             Class.forName("oracle.jdbc.driver.OracleDriver");
+                 String url = "jdbc:oracle:thin:@172.16.16.50:1521:ORACLE21C";
+             // Database credentials
+             String username = "C##24BCS061";
+             String pwd = "C##24BCS061";
+             con = DriverManager.getConnection(url, username, pwd);
+             System.out.println("Connected to Oracle Database successfully!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Database Connection Failed: " + e.getMessage());
+        }
+    }
+
+
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == submitBtn) {
+            String name = nameField.getText();
+            String trainnum = trainnumField.getText();
+            String mobile = mobileField.getText();
+            String email = emailField.getText();
+
+            try {
+                pst = con.prepareStatement("INSERT INTO TrainDetails(NAME, , MOBILE, ADDRESS) VALUES(?, ?, ?, ?)");
+                pst.setString(1, name);
+                pst.setString(2, trainnum);
+                pst.setString(3, mobile);
+                pst.setString(4, email);
+                pst.executeUpdate();
+
+                JOptionPane.showMessageDialog(this, "Record Added Successfully!");
+                nameField.setText("");
+                trainnumField.setText("");
+                mobileField.setText("");
+                emailField.setText("");
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+            }
+        } else if (e.getSource() == clearBtn) {
+            nameField.setText("");
+            trainnumField.setText("");
+            mobileField.setText("");
+            emailField.setText("");
+            sourceField.setText("");
+            destinationField.setText("");
+        }
+    }
+
+    public static void main(String[] args) {
+        new TrainRegistrationOracle();
+    }
+
+}
