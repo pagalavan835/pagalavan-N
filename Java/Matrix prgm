@@ -1,0 +1,94 @@
+import java.util.*;
+
+class Matrix{
+        int rows,cols;
+        int [][] data;
+
+        Matrix (int rows,int cols){
+                this.rows=rows;
+                this.cols=cols;
+                data=new int [rows][cols];
+        }
+        public void readMatrix() {
+                Scanner in=new Scanner(System.in);
+                System.out.println("Enter Elements:");
+                for(int i=0;i<rows;i++) {
+                        for(int j=0;j<cols;j++) {
+                                data [i] [j]=in.nextInt();
+                        }
+                }
+        }
+                void displayMatrix() {
+                        System.out.println("Matrix Elements:");
+                        for(int i=0;i<rows;i++) {
+                                for(int j=0;j<cols;j++) {
+                                        System.out.print(data[i][j]+"\t");
+                                }
+                                System.out.println();
+                        }
+                }
+                public void transpose() {
+                        int [][] d=new int [rows][cols];
+                        for(int i=0;i<rows;i++) {
+                                for(int j=0;j<cols;j++) {
+                                        d[i][j]=data[i][j];
+                                }
+                        }
+                        for(int i=0;i<rows;i++) {
+                                for(int j=0;j<cols;j++) {
+                                        System.out.print(d[i][j]+"\t");
+                                }
+                                System.out.print("\n");
+                        }
+                }
+                public void mul(Matrix m1,Matrix m2) {
+                        for(int i=0;i<rows;i++) {
+                                for(int j=0;j<cols;j++) {
+                                        for(int k=0;k<cols;k++) {
+                                                data[i][j]+=m1.data[i][k]*m2.data[k][j];
+                                                }
+                                        }
+                                }
+                        }
+                public void sum() {
+                        int ss=0;
+                        int cc=0;
+                        for(int i=0;i<rows;i++) {
+                                ss=0;
+                                cc=0;
+                                for(int j=0;j<cols;j++) {
+                                        ss+=data[i][j];
+                                        cc+=data[j][i];
+                                }
+                                System.out.println("Sum of Row" +(i+1)+":"+ss);
+                                System.out.println("Sum of Column"+(i+1)+":"+cc);
+                        }
+                }
+
+}
+public class MatrixPgm {
+
+        public static void main(String[] args) {
+                System.out.println("Matrix mutiplication using Array:");
+                Matrix m1=new Matrix(2,2);
+                Matrix m2=new Matrix(2,2);
+                Matrix m3=new Matrix(2,2);
+                m1.readMatrix();
+                m1.displayMatrix();
+                System.out.println("Matrix 1 Transpose:");
+                m1.transpose();
+                m1.sum();
+                m2.readMatrix();
+                m2.displayMatrix();
+                System.out.println("Matrix 2 Transpose:");
+                m2.transpose();
+                m2.sum();
+                m3.mul(m1,m2);
+                m3.displayMatrix();
+
+
+
+
+        }
+
+}
