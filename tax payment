@@ -1,0 +1,10 @@
+salary = float(input("Enter Annual Salary (in Lakhs): "))
+if salary <= 2.5:
+    tax = 0
+elif salary <= 5:
+    tax = (salary - 2.5) * 0.05
+elif salary <= 10:
+    tax = (salary - 5) * 0.10 + (2.5 * 0.05)
+else:
+    tax = (salary - 10) * 0.15 + (5 * 0.10) + (2.5 * 0.05)
+print(f"Tax Payable: {round(tax, 3)} Lakhs")
