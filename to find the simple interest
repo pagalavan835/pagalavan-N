@@ -1,0 +1,12 @@
+c=int(input("Enter the Celsius:"))
+if(-50<=c<=100):
+   f=(c*(9/5))+32;
+   print("The Fahrenheit is:",f)
+else:
+   print("invalid")
+[24bcs054@mepcolinux IIT]$cat ex4.py
+P = int(input())
+R = int(input())
+T = int(input())
+simple_interest = (P * R * T) / 100
+print(float(simple_interest))
