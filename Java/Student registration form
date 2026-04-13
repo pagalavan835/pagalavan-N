@@ -1,0 +1,145 @@
+import java.awt.*;
+import java.awt.event.*;
+public class StudentRegAwt extends Frame implements ActionListener {
+
+    TextField fname, lname, street, city, state, month, day, year, studentNo, email, company, date;
+    TextArea comments;
+    CheckboxGroup gender;
+    Checkbox c1, c2, c3, c4;
+    Button submit;
+
+
+    StudentRegAwt() {
+        setTitle("Student Registration Form");
+        setSize(800, 800);
+        setLayout(null);
+
+
+        Label nameLabel = new Label("Full Name:");
+        nameLabel.setBounds(50, 50, 100, 25);
+        add(nameLabel);
+        fname = new TextField();
+        fname.setBounds(160, 50, 150, 25);
+        add(fname);
+        lname = new TextField();
+        lname.setBounds(320, 50, 150, 25);
+        add(lname);
+
+
+        Label addressLabel = new Label("Address:");
+        addressLabel.setBounds(50, 90, 100, 25);
+        add(addressLabel);
+        street = new TextField();
+        street.setBounds(160, 90, 310, 25);
+        add(street);
+
+        Label cityLabel = new Label("City:");
+        cityLabel.setBounds(50, 130, 100, 25);
+        add(cityLabel);
+        city = new TextField();
+        city.setBounds(160, 130, 150, 25);
+        add(city);
+
+        Label stateLabel = new Label("State/Province:");
+        stateLabel.setBounds(320, 130, 100, 25);
+        add(stateLabel);
+        state = new TextField();
+        state.setBounds(430, 130, 150, 25);
+        add(state);
+
+        Label birthLabel = new Label("Birth Date:");
+        birthLabel.setBounds(50, 170, 100, 25);
+        add(birthLabel);
+        month = new TextField();
+        month.setBounds(160, 170, 50, 25);
+        add(month);
+        day = new TextField();
+        day.setBounds(220, 170, 50, 25);
+        add(day);
+        year = new TextField();
+        year.setBounds(280, 170, 80, 25);
+        add(year);
+
+        Label genderLabel = new Label("Gender:");
+        genderLabel.setBounds(50, 210, 100, 25);
+        add(genderLabel);
+        gender = new CheckboxGroup();
+        Checkbox male = new Checkbox("Male", gender, false);
+        male.setBounds(160, 210, 60, 25);
+        add(male);
+        Checkbox female = new Checkbox("Female", gender, false);
+        female.setBounds(230, 210, 70, 25);
+        add(female);
+        Checkbox na = new Checkbox("N/A", gender, false);
+        na.setBounds(310, 210, 60, 25);
+        add(na);
+
+        Label studentNoLabel = new Label("Student Number:");
+        studentNoLabel.setBounds(50, 250, 120, 25);
+        add(studentNoLabel);
+        studentNo = new TextField();
+        studentNo.setBounds(180, 250, 200, 25);
+        add(studentNo);
+
+        Label emailLabel = new Label("Student Email:");
+        emailLabel.setBounds(50, 290, 100, 25);
+        add(emailLabel);
+        email = new TextField();
+        email.setBounds(180, 290, 250, 25);
+        add(email);
+
+
+        Label courseLabel = new Label("Courses:");
+        courseLabel.setBounds(50, 370, 100, 25);
+        add(courseLabel);
+        c1 = new Checkbox("English 101");   c1.setBounds(180, 370, 120, 25); add(c1);
+        c2 = new Checkbox("English 102");   c2.setBounds(310, 370, 120, 25); add(c2);
+        c3 = new Checkbox("Creative Writing 1"); c3.setBounds(440, 370, 150, 25); add(c3);
+        c4 = new Checkbox("Creative Writing 2"); c4.setBounds(180, 400, 150, 25); add(c4);
+
+        Label commentsLabel = new Label("Additional Comments:");
+        commentsLabel.setBounds(50, 470, 150, 25);
+        add(commentsLabel);
+
+        comments = new TextArea();
+        comments.setBounds(210, 470, 300, 80);
+        add(comments);
+
+
+        submit = new Button("Submit");
+        submit.setBounds(180, 620, 100, 30);
+        submit.addActionListener(this);
+        add(submit);
+
+
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent we) {
+                dispose();
+            }
+        });
+
+        setVisible(true);
+    }
+
+
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == submit) {
+            Dialog d = new Dialog(this, "Submission", true);
+            d.setLayout(new FlowLayout());
+            Label msg = new Label("Data Submitted Successfully!");
+            d.add(msg);
+
+            Button ok = new Button("OK");
+            ok.addActionListener(ev -> d.dispose());
+            d.add(ok);
+
+            d.setSize(250, 150);
+            d.setLocationRelativeTo(this);
+            d.setVisible(true);
+        }
+    }
+
+    public static void main(String[] args) {
+        new StudentRegAwt();
+    }
+}
