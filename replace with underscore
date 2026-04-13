@@ -1,0 +1,11 @@
+def removeele(nums, val):
+   for i in range(4):
+      if nums[i]==val:
+         nums[i]="_"
+      else:
+         continue
+nums=[3,2,2,3]
+val=3
+print(nums)
+removeele(nums,val)
+print(nums)
