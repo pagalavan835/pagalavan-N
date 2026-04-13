@@ -1,0 +1,99 @@
+
+import java.util.*;
+abstract class CreditCard{
+        int cardno;
+        String name;
+        String cardtype;
+        CreditCard(int no,String name,String type){
+                cardno=no;
+                this.name=name;
+                cardtype=type;
+
+        }
+        abstract public void calculateBill();
+        public void display(double bill) {
+                System.out.println("DETAILS");
+                System.out.println("CARD NUMBER:"+cardno);
+                System.out.println("HOLDER NAME:"+name);
+                System.out.println("CARD TYPE:"+cardtype);
+                System.out.println("___total bill__");
+                System.out.println("RS."+bill);
+        }
+
+}
+class SilverCard extends CreditCard{
+        double amt,maxbal,bill=0;
+        SilverCard(int cardno,String name,String type,double amt,int maxbal){
+                super(cardno,name,type);
+                this.amt=amt;
+                this.maxbal=maxbal;
+
+        }
+         public void calculateBill() {
+                 bill+=amt;
+                 super.display(bill);
+         }
+}
+
+
+class GoldCard extends CreditCard{
+        double amt,maxbal,bill=0;
+        GoldCard(int cardno,String name,String type,double amt,int maxbal){
+                super(cardno,name,type);
+                this.amt=amt;
+                this.maxbal=maxbal;
+
+        }
+         public void calculateBill() {
+                 bill+=(amt-(amt*0.05));
+                 super.display(bill);
+         }
+}
+
+class PlatinumCard extends CreditCard{
+        double amt,maxbal,bill=0;
+        PlatinumCard(int cardno,String name,String type,double amt,int maxbal){
+                super(cardno,name,type);
+                this.amt=amt;
+                this.maxbal=maxbal;
+
+        }
+         public void calculateBill() {
+                 bill+=(amt-(amt*0.10));
+                 super.display(bill);
+         }
+}
+
+public class MainPgm {
+
+        public static void main(String[] args) {
+
+                Scanner in=new Scanner(System.in);
+                System.out.print("enter amount:");
+                double amt=in.nextDouble();
+                System.out.print("enter cardno:");
+                int cardno=in.nextInt();
+                System.out.print("enter name:");
+                String name=in.next();
+                System.out.print("card type:");
+                String type=in.next();
+                switch(type) {
+                case "silvercard":
+                        SilverCard s=new SilverCard(cardno,name,type,amt,200000);
+                        s.calculateBill();
+                        break;
+
+                case "goldcard":
+                        GoldCard g=new GoldCard(cardno,name,type,amt,200000);
+                        g.calculateBill();
+                        break;
+                case "platinumcard":
+                        PlatinumCard p=new PlatinumCard(cardno,name,type,amt,200000);
+                        p.calculateBill();
+                        break;
+
+
+                }
+        }
+
+}
