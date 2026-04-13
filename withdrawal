@@ -1,0 +1,10 @@
+balance=10000;
+amt=int(input("Enter the amount to withdraw:"));
+if(amt%100==0):
+   if(amt<balance):
+      print("Withdraw successfully");
+      print("Balance:",balance-amt);
+   else:
+      print("Withdraw unsuccessful:");
+else:
+   print("Invalid");
