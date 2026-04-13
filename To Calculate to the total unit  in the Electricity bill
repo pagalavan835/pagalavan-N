@@ -1,0 +1,11 @@
+n=int(input("Enter Unit:"))
+if n<=100:
+   print("No Charge")
+elif n>100 and n<=200:
+   a=((n-100)*5)
+   print(a)
+elif (n>200):
+   a=(500+(n-200)*10)
+   print(a)
+else:
+   print("Invalid")
