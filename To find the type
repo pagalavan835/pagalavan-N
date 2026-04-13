@@ -1,0 +1,4 @@
+a=(input("Enter numbers:"))
+print(type (a))
+b=int(a)
+print(type(b))
