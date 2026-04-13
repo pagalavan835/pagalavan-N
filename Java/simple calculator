@@ -1,0 +1,113 @@
+import java.awt.*;
+import java.awt.event.*;
+
+public class SimpleCalc extends Frame implements ActionListener {
+
+    TextField num1Field, num2Field, resultField;
+    Button addBtn, subBtn, mulBtn, divBtn;
+    Button sqrtBtn,powBtn;
+
+    SimpleCalc() {
+        setTitle("Simple Calculator");
+        setSize(350, 300);
+        setLayout(null);
+
+        Label num1Label = new Label("First Number:");
+        num1Label.setBounds(30, 50, 100, 25);
+        add(num1Label);
+
+        num1Field = new TextField();
+        num1Field.setBounds(140, 50, 150, 25);
+        add(num1Field);
+
+        Label num2Label = new Label("Second Number:");
+        num2Label.setBounds(30, 90, 100, 25);
+        add(num2Label);
+
+        num2Field = new TextField();
+        num2Field.setBounds(140, 90, 150, 25);
+        add(num2Field);
+
+        Label resultLabel = new Label("Result:");
+        resultLabel.setBounds(30, 130, 100, 25);
+        add(resultLabel);
+
+        resultField = new TextField();
+        resultField.setBounds(140, 130, 150, 25);
+        resultField.setEditable(false);
+        add(resultField);
+
+        addBtn = new Button("+");
+        addBtn.setBounds(30, 200, 40, 30);
+        addBtn.addActionListener(this);
+        add(addBtn);
+
+        subBtn = new Button("-");
+        subBtn.setBounds(130, 200, 40, 30);
+        subBtn.addActionListener(this);
+        add(subBtn);
+
+        mulBtn = new Button("*");
+        mulBtn.setBounds(30, 240, 40, 30);
+        mulBtn.addActionListener(this);
+        add(mulBtn);
+
+        divBtn = new Button("/");
+        divBtn.setBounds(130, 240, 40, 30);
+        divBtn.addActionListener(this);
+        add(divBtn);
+
+        sqrtBtn = new Button("sqrt");
+        sqrtBtn.setBounds(30, 280, 40, 30);
+        sqrtBtn.addActionListener(this);
+        add(sqrtBtn);
+        powBtn = new Button("^");
+        powBtn.setBounds(130, 280, 40, 30);
+        powBtn.addActionListener(this);
+        add(powBtn);
+
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent we) {
+                dispose();
+            }
+        });
+
+        setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        try {
+            double num1 = Double.parseDouble(num1Field.getText());
+            double num2 = 0;
+            double result = 0;
+
+            if (e.getSource() != sqrtBtn) {
+                num2 = Double.parseDouble(num2Field.getText());
+            }
+
+            if (e.getSource() == addBtn)
+                result = num1 + num2;
+            else if (e.getSource() == subBtn)
+                result = num1 - num2;
+            else if (e.getSource() == mulBtn)
+                result = num1 * num2;
+            else if (e.getSource() == divBtn)
+                result = num1 / num2;
+            else if (e.getSource() == sqrtBtn)
+                result = Math.sqrt(num1);
+            else if (e.getSource() == powBtn)
+                result = Math.pow(num1, num2);
+
+            resultField.setText(String.valueOf(result));
+
+        } catch (NumberFormatException ex) {
+            resultField.setText("INVALID INPUT");
+        }catch (Exception ex) {
+            resultField.setText("ERROR");
+        }
+    }
+
+    public static void main(String[] args) {
+        new SimpleCalc();
+    }
+}
