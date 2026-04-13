@@ -1,0 +1,117 @@
+import javax.swing.*;
+import java.awt.*;
+import java.util.Random;
+
+public class ColorChangingPanels {
+    public static void main(String[] args) {
+        // Create the main frame
+        JFrame frame = new JFrame("BorderLayout Example");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(500, 500);
+        frame.setLayout(new BorderLayout());
+
+        // Create panels for each region
+        JPanel northPanel = new JPanel();
+        JPanel southPanel = new JPanel();
+        JPanel eastPanel = new JPanel();
+        JPanel westPanel = new JPanel();
+        JPanel centerPanel = new JPanel();
+
+        // Add panels to the frame
+        frame.add(northPanel, BorderLayout.NORTH);
+        frame.add(southPanel, BorderLayout.SOUTH);
+        frame.add(eastPanel, BorderLayout.EAST);
+        frame.add(westPanel, BorderLayout.WEST);
+        frame.add(centerPanel, BorderLayout.CENTER);
+
+        // Set initial background colors
+        northPanel.setBackground(Color.RED);
+        southPanel.setBackground(Color.BLUE);
+        eastPanel.setBackground(Color.GREEN);
+        westPanel.setBackground(Color.YELLOW);
+        centerPanel.setBackground(Color.ORANGE);
+
+        // Create a timer to change colors every 3 seconds
+        Timer timer = new Timer(3000, e -> {
+            Random random = new Random();
+            northPanel.setBackground(new Color(random.nextInt(256), random.nextInt(256), random.nextInt(256)));
+            southPanel.setBackground(new Color(random.nextInt(256), random.nextInt(256), random.nextInt(256)));
+            eastPanel.setBackground(new Color(random.nextInt(256), random.nextInt(256), random.nextInt(256)));
+            westPanel.setBackground(new Color(random.nextInt(256), random.nextInt(256), random.nextInt(256)));
+            centerPanel.setBackground(new Color(random.nextInt(256), random.nextInt(256), random.nextInt(256)));
+        });
+
+        // Start the timer
+        timer.start();
+
+        // Make the frame visible
+        frame.setVisible(true);
+    }
+}
+[24bcs054@mepcolinux p6]$cat Menu.java
+import javax.swing.*;
+import java.awt.event.*;
+
+public class Menu implements ActionListener{
+        JFrame f;
+        JMenuBar mb;
+        JMenu file,edit,help,window;
+        JMenuItem cut,copy,paste;
+        JTextArea ta;
+        Menu(){
+                f=new JFrame("MENU");
+                cut=new JMenuItem("cut");
+                copy=new JMenuItem("copy");
+                paste=new JMenuItem("paste");
+
+                cut.addActionListener(this);
+                copy.addActionListener(this);
+                paste.addActionListener(this);
+
+                mb=new JMenuBar();
+
+                file=new JMenu("File");
+                mb.add(file);
+
+                edit=new JMenu("Edit");
+                edit.add(cut);
+                edit.add(copy);
+                edit.add(paste);
+
+                window=new JMenu("Window");
+                mb.add(window);
+
+                help=new JMenu("Help");
+                mb.add(help);
+
+                mb.add(edit);
+
+                ta=new JTextArea();
+                ta.setBounds(5,5,360,320);
+                f.add(ta);
+                f.setJMenuBar(mb);
+                f.setLayout(null);
+                f.setSize(400,400);
+
+                f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+                f.setVisible(true);
+        }
+        public void actionPerformed(ActionEvent e) {
+                if(e.getSource()==cut)
+                        ta.cut();
+                else if(e.getSource()==copy)
+                        ta.copy();
+                else if(e.getSource()==paste)
+                        ta.paste();
+        }
+        public static void main(String[] args) {
+                SwingUtilities.invokeLater(new Runnable() {
+                        public void run() {
+                                new Menu();
+
+                        }
+                });
+        }
+
+}
