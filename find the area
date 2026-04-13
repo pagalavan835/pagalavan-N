@@ -1,0 +1,6 @@
+l=int(input("Enter the length:"))
+b=int(input("Enter the breadth:"))
+if(1<=l<=100 and 1<=b<=100):
+   print("The AREA:",l*b)
+else:
+   print("Invalid")
