@@ -1,0 +1,19 @@
+or i in range(5):
+   num=int(input("Enter your mark:"))
+   total+=num
+   n=total/5
+if n>=90:
+  print("'O' Grade")
+elif n<90 and n>=80:
+  print("'A+ Grade'")
+elif n<80 and n>=70:
+  print("'A'Grade")
+elif n<70 and n>=60:
+  print("'B+'Grade")
+elif n<60 and n>=55:
+  print("'B'Grade")
+elif n<55 and n>=50:
+  print("'C'")
+else:
+  print("Fail")
+print("Percentage",n)
