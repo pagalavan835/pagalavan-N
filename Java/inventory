@@ -1,0 +1,110 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Inventory extends JFrame implements ActionListener {
+
+    JTextArea displayArea;
+    JMenuBar menuBar;
+    JMenu inventoryMenu, helpMenu;
+    JMenuItem addItem, viewItem, updateItem, deleteItem, exitItem, aboutItem;
+
+
+
+    public Inventory() {
+        setTitle("Inventory Management System");
+        setSize(600, 400);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+
+        displayArea = new JTextArea();
+        displayArea.setFont(new Font("Arial", Font.PLAIN, 16));
+        displayArea.setEditable(false);
+        add(new JScrollPane(displayArea), BorderLayout.CENTER);
+
+        menuBar = new JMenuBar();
+
+        inventoryMenu = new JMenu("Inventory");
+        addItem = new JMenuItem("Add Item");
+        viewItem = new JMenuItem("View Item");
+        updateItem = new JMenuItem("Update Item");
+        deleteItem = new JMenuItem("Delete Item");
+        exitItem = new JMenuItem("Exit");
+
+        helpMenu = new JMenu("Help");
+        aboutItem = new JMenuItem("About");
+
+        inventoryMenu.add(addItem);
+        inventoryMenu.add(viewItem);
+        inventoryMenu.add(updateItem);
+        inventoryMenu.add(deleteItem);
+        inventoryMenu.addSeparator();
+        inventoryMenu.add(exitItem);
+        helpMenu.add(aboutItem);
+
+        menuBar.add(inventoryMenu);
+        menuBar.add(helpMenu);
+        setJMenuBar(menuBar);
+
+        addItem.addActionListener(this);
+        viewItem.addActionListener(this);
+        updateItem.addActionListener(this);
+        deleteItem.addActionListener(this);
+        exitItem.addActionListener(this);
+        aboutItem.addActionListener(this);
+
+        setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Object source = e.getSource();
+
+        if (source == addItem) {
+                displayArea.setText("Add products\n\n"
+                    + "Product ID: Product1\n"
+                    + "Name: Playstation\n"
+                    + "Price: 35000\n"
+                    + "Quantity: 10\n\n"
+                    );
+
+
+
+        } else if (source == viewItem) {
+                displayArea.setText("All products\n\n"
+                    + "ID\tName\t\tQty\tPrice\n"
+                    + "Product1\tPlaystation\t\t10\t35000\n"
+                    + "Product2\tDualshock4\t\t50\t2000\n"
+                    + "Product3\tDisks\t30\t2500\n"
+                    + "Product4\tCase\t\t15\t299\n\n"
+                    + "Product5\tcontroller\t\t1\2350\n"
+                    +"Product6\tMonitor\t\t1\2390\n"
+                    + "Total Products: 6");;
+        } else if (source == updateItem) {
+                 displayArea.setText("Update product\n\n"
+                     + "Product: Playstation(Product1)\n"
+                     + "Current Stock: 10\n"
+                     + "New Stock: 25\n\n"
+                     + "Stock updated successfully!");
+        } else if (source == deleteItem) {
+                displayArea.setText("Delete Item here ......");
+                displayArea.setText("All items are deleted successfully");
+
+        } else if (source == exitItem) {
+            int confirm = JOptionPane.showConfirmDialog(this,
+                    "Are you sure you want to exit?", "Exit",
+                    JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                System.exit(0);
+            }
+        } else if (source == aboutItem) {
+            JOptionPane.showMessageDialog(this,
+                    "Inventory Management System v2.0\nDeveloped using Java Swing",
+                    "About", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    public static void main(String[] args) {
+        new Inventory();
+    }
+}
