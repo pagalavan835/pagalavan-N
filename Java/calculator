@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+interface Calculator {
+    double operate(double a, double b);
+}
+public class CalculatorPgm {
+    public static void main(String[] args) {
+        Calculator addition = (a, b) -> a + b;
+        Calculator subtraction = (a, b) -> a - b;
+        Calculator multiplication = (a, b) -> a * b;
+        Calculator division = (a, b)->a / b;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter first number: ");
+        double num1 = scanner.nextDouble();
+        System.out.println("Enter second number: ");
+        double num2 = scanner.nextDouble();
+        System.out.println("Choose operation (+, -, *, /): ");
+        char operation = scanner.next().charAt(0);
+        double result;
+        switch (operation) {
+            case '+':
+                result = addition.operate(num1, num2);
+                break;
+            case '-':
+                result = subtraction.operate(num1, num2);
+                break;
+            case '*':
+                result = multiplication.operate(num1, num2);
+                break;
+            case '/':
+                result = division.operate(num1, num2);
+                break;
+            default:
+                System.out.println("Invalid operation!");
+                return;
+        }
+        System.out.println("Result: " + result);
+    }
+}
